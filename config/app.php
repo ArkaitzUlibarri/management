@@ -167,6 +167,7 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 
         /*
          * Application Service Providers...
