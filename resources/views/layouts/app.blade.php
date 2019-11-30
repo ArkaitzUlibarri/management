@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('headJs')
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +79,12 @@
             @yield('content')
         </main>
     </div>
+    @yield('innerJs')
+
+    @auth
+        <script>
+            $('div.alert').not('.alert-important').delay(10000).fadeOut(350);
+        </script>
+    @endauth
 </body>
 </html>
