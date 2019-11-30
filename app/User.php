@@ -2,13 +2,18 @@
 
 namespace App;
 
+use App\Models\Session;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +41,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sesiones()
+    {
+        return $this->hasMany(Session::class, 'user_id', 'id');
+    }
+
+    public function sesionActiva()
+    {
+        return $this->sesiones->last();
+    }
+
+    public function getLastLoginAttribute()
+    {
+        return $this->sesionActiva() ? $this->sesionActiva()->last_activity : null;
+    }
 }
