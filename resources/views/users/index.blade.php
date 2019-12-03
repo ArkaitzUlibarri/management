@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('headJs')
+@section('adminlte_css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.css"/>
 @endsection
 
@@ -34,7 +34,7 @@
 
 @endsection
 
-@section('innerJs')
+@section('adminlte_js')
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/datatables.min.js"></script>
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 {!! $dataTable->scripts() !!}
