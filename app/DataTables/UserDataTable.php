@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\Models\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -27,12 +27,12 @@ class UserDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->withTrashed();
     }
 
     /**
@@ -48,6 +48,7 @@ class UserDataTable extends DataTable
             ->minifiedAjax()
             ->dom('Bfrtip')
             ->orderBy(1)
+            ->scrollX(true)
             ->buttons(
                 Button::make('create'),
                 Button::make('export'),
@@ -71,6 +72,7 @@ class UserDataTable extends DataTable
             Column::make('email_verified_at'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('deleted_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

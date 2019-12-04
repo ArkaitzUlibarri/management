@@ -19,9 +19,6 @@
                     <h2 class="float-left">
                         <i class="fa fa-users"></i> Users
                     </h2>
-                    <a href="{{ route('users.create') }}" class="btn btn-primary float-right m-0">
-                        <i class="fa fa-user-plus"></i> New User
-                    </a>
                 </div>
                 <div class="card-body">
                     {!! $dataTable->table(['class' => 'table table-bordered']) !!}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Models\Session;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -14,6 +14,11 @@ class User extends Authenticatable
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    public static $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email|max:255',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -42,18 +47,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function sesiones()
+    public function sessions()
     {
         return $this->hasMany(Session::class, 'user_id', 'id');
     }
 
-    public function sesionActiva()
+    public function activeSession()
     {
-        return $this->sesiones->last();
+        return $this->sessions->last();
     }
 
     public function getLastLoginAttribute()
     {
-        return $this->sesionActiva() ? $this->sesionActiva()->last_activity : null;
+        return $this->activeSession() ? $this->activeSession()->last_activity : null;
     }
 }

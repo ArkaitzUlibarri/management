@@ -12,7 +12,7 @@ Breadcrumbs::for ('users.index', function ($trail) {
     $trail->push('Users', route('users.index'));
 });
 
-Breadcrumbs::for ("users.create", function ($trail, $role) {
+Breadcrumbs::for ("users.create", function ($trail) {
     $trail->parent('users.index');
     $trail->push('New User', route("users.create"));
 });
