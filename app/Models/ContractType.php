@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ContracType extends Model
+class ContractType extends Model
 {
     use SoftDeletes;
 
@@ -28,4 +28,6 @@ class ContracType extends Model
     protected $fillable = [
         'id', 'code', 'name', 'working_day', 'characteristic_1', 'characteristic_2', 'holidays'
     ];
+
+    const ICON = 'fas fa-fw fa-file-contract';
 }

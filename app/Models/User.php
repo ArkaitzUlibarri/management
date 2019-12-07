@@ -47,6 +47,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    const ICON = 'fas fa-fw fa-user';
+
     public function sessions()
     {
         return $this->hasMany(Session::class, 'user_id', 'id');

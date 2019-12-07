@@ -176,7 +176,12 @@ return [
         [
             'text' => 'Users',
             'route'  => 'users.index',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => \App\Models\User::ICON,
+        ],
+        [
+            'text' => 'Contract Types',
+            'route'  => 'contractTypes.index',
+            'icon' => \App\Models\ContractType::ICON,
         ],
     ],
 

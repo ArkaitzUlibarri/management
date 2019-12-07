@@ -23,7 +23,7 @@
 
                     <div class="card-header">
                         <h2 class="float-left">
-                            <i class="fa fa-user"></i> @lang('common.new_user')
+                            <i class="{{ \App\Models\User::ICON }}"></i> @lang('common.new_user')
                         </h2>
                     </div>
 

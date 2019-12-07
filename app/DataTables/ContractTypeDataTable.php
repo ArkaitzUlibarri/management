@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\ContractType;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UserDataTable extends DataTable
+class ContractTypeDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,16 +21,16 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'users.action');
+            ->addColumn('action', 'contractTypes.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param User $model
+     * @param ContractType $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(ContractType $model)
     {
         return $model->newQuery()->withTrashed();
     }
@@ -47,7 +47,7 @@ class UserDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(1,'asc')
             ->scrollX(true)
             ->buttons(
                 Button::make('create'),
@@ -67,9 +67,12 @@ class UserDataTable extends DataTable
     {
         return [
             Column::make('id'),
+            Column::make('code'),
             Column::make('name'),
-            Column::make('email'),
-            Column::make('email_verified_at'),
+            Column::make('working_day'),
+            Column::make('characteristic_1'),
+            Column::make('characteristic_2'),
+            Column::make('holidays'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::make('deleted_at'),
@@ -88,6 +91,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Users_' . date('YmdHis');
+        return 'ContractTypes_' . date('YmdHis');
     }
 }

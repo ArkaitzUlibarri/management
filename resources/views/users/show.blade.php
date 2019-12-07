@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="float-left">
-                        <i class="fa fa-user"></i> {{ $user->name }}
+                        <i class="{{ \App\Models\User::ICON }}"></i> {{ $user->name }}
                     </h2>
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary float-right m-0" title="{{ trans('buttons.edit') }}">
                         <i class="fa fa-edit"></i> @lang('buttons.edit')
