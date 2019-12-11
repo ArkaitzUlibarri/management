@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
+});
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/users', 'UserController');
+    Route::resource('/contractTypes', 'ContractTypeController');
 });

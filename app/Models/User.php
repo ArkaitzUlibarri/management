@@ -1,14 +1,24 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Models\Session;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+    public static $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email|max:255',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +46,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    const ICON = 'fas fa-fw fa-user';
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class, 'user_id', 'id');
+    }
+
+    public function activeSession()
+    {
+        return $this->sessions->last();
+    }
+
+    public function getLastLoginAttribute()
+    {
+        return $this->activeSession() ? $this->activeSession()->last_activity : null;
+    }
 }
