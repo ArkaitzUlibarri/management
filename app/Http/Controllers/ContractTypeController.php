@@ -15,7 +15,7 @@ class ContractTypeController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('ContractTypeController@index', ['user_id' => $authUser->id]);
+        Log::info('ContractTypeController@index', ['user_id' => $authUser->id]);
 
         if ($authUser->cannot('viewAny', ContractType::class))
             abort(403);
@@ -27,7 +27,7 @@ class ContractTypeController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('ContractTypeController@show', ['user_id' => $authUser->id]);
+        Log::info('ContractTypeController@show', ['user_id' => $authUser->id]);
 
         $model = ContractType::withTrashed()->find($id);
 
@@ -44,7 +44,7 @@ class ContractTypeController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('ContractTypeController@edit', ['user_id' => $authUser->id]);
+        Log::info('ContractTypeController@edit', ['user_id' => $authUser->id]);
 
         $model = ContractType::find($id);
 
@@ -61,7 +61,7 @@ class ContractTypeController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('ContractTypeController@update', ['user_id' => $authUser->id, 'request' => $request->all()]);
+        Log::info('ContractTypeController@update', ['user_id' => $authUser->id, 'request' => $request->all()]);
 
         $model = ContractType::find($id);
 
@@ -83,7 +83,7 @@ class ContractTypeController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('ContractTypeController@create', ['user_id' => $authUser->id]);
+        Log::info('ContractTypeController@create', ['user_id' => $authUser->id]);
 
         if ($authUser->cannot('create', ContractType::class))
             abort(403);
@@ -95,7 +95,7 @@ class ContractTypeController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('ContractTypeController@store', ['user_id' => $authUser->id, 'request' => $request->all()]);
+        Log::info('ContractTypeController@store', ['user_id' => $authUser->id, 'request' => $request->all()]);
 
         if ($authUser->cannot('create', ContractType::class))
             abort(403);
@@ -112,7 +112,7 @@ class ContractTypeController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('ContractTypeController@destroy', ['user_id' => $authUser->id]);
+        Log::info('ContractTypeController@destroy', ['user_id' => $authUser->id]);
 
         $model = ContractType::find($id);
 

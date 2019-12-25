@@ -43,11 +43,10 @@ class UserDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('dataTableBuilder')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(1,'asc')
             ->scrollX(true)
             ->buttons(
                 Button::make('create'),
@@ -88,6 +87,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Users_' . date('YmdHis');
+        return 'users_' . date('YmdHis');
     }
 }

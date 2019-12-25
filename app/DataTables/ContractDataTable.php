@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\ContractType;
+use App\Models\Contract;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ContractTypeDataTable extends DataTable
+class ContractDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,18 +21,26 @@ class ContractTypeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'contractTypes.action');
+            ->editColumn('contractType', function (Contract $model) {
+                return isset($model->contractType)
+                    ? $model->contractType->code . ' - ' . $model->contractType->name
+                    : null;
+            })
+            ->addColumn('action', 'contracts.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param ContractType $model
+     * @param \App\Models\Contract $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ContractType $model)
+    public function query(Contract $model)
     {
-        return $model->newQuery()->withTrashed();
+        return $model->newQuery()
+            ->select('contracts.*')
+            ->with('user')
+            ->with('contractType');
     }
 
     /**
@@ -46,7 +54,7 @@ class ContractTypeDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
-            ->orderBy(1,'asc')
+            ->orderBy(1, 'asc')
             ->scrollX(true)
             ->buttons(
                 Button::make('create'),
@@ -66,15 +74,14 @@ class ContractTypeDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('code'),
-            Column::make('name'),
-            Column::make('working_day'),
-            Column::make('characteristic_1'),
-            Column::make('characteristic_2'),
-            Column::make('holidays'),
+            Column::make('user.name'),
+            Column::make('contractType'),
+            Column::make('start_date'),
+            Column::make('estimated_end_date'),
+            Column::make('end_date'),
+            Column::make('week_hours'),
             Column::make('created_at'),
             Column::make('updated_at'),
-            Column::make('deleted_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -90,6 +97,6 @@ class ContractTypeDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'contract_types_' . date('YmdHis');
+        return 'contracts_' . date('YmdHis');
     }
 }

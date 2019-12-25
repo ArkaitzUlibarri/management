@@ -183,6 +183,11 @@ return [
             'route'  => 'contractTypes.index',
             'icon' => \App\Models\ContractType::ICON,
         ],
+        [
+            'text' => 'Contracts',
+            'route'  => 'contracts.index',
+            'icon' => \App\Models\Contract::ICON,
+        ],
     ],
 
 //    'menu' => [
