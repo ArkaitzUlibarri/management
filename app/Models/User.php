@@ -49,9 +49,14 @@ class User extends Authenticatable
 
     const ICON = 'fas fa-fw fa-user';
 
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+
     public function sessions()
     {
-        return $this->hasMany(Session::class, 'user_id', 'id');
+        return $this->hasMany(Session::class);
     }
 
     public function activeSession()

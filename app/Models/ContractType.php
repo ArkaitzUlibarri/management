@@ -30,4 +30,9 @@ class ContractType extends Model
     ];
 
     const ICON = 'fas fa-fw fa-file-contract';
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
 }
