@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Contract;
 use App\Models\ContractType;
 use App\Models\User;
+use App\Policies\ContractPolicy;
 use App\Policies\ContractTypePolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class => UserPolicy::class,
         ContractType::class => ContractTypePolicy::class,
+        Contract::class => ContractPolicy::class,
     ];
 
     /**
