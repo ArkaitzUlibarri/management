@@ -22,7 +22,7 @@
 
                 <div class="card-body">
                     <dl class="row">
-                        <dd class="col-sm-6">@lang('users.name'):</dd>
+                        <dd class="col-sm-6">@lang('common.name'):</dd>
                         <dd class="col-sm-6">{{ $model->user->name }}</dd>
                         <dd class="col-sm-6">@lang('contractTypes.name'):</dd>
                         <dd class="col-sm-6">{{ $model->contractType->name }}</dd>

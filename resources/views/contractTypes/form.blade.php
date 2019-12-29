@@ -23,7 +23,7 @@
 
                     <div class="card-header">
                         <h2 class="float-left">
-                            <i class="{{ App\Models\ContractType::ICON }}"></i> @lang('common.new_user')
+                            <i class="{{ App\Models\ContractType::ICON }}"></i>
                         </h2>
                     </div>
 
