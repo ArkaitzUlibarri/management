@@ -67,10 +67,15 @@
                             </div>
                         @endif
 
-                        <div class="form-group row {{ $errors->has('start_date') ? 'is-invalid' : '' }}">
+                        <div class="form-group row">
                             <label class="col-md-4 col-form-label" for="start_date">@lang('contracts.start_date') *</label>
                             <div class="col-md-8">
-                                <input type="datetime" class="form-control" name="start_date" id="start_date" required value="{{ old('start_date',isset($model) ? $model->start_date : null) }}" @if($errors->has('start_date')) autofocus @endif>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" name="start_date" id="start_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" required value="{{ old('start_date',isset($model) ? $model->start_date : null) }}" @if($errors->has('start_date')) autofocus @endif>
+                                </div>
                                 @if ($errors->has('start_date'))
                                 <em class="text-danger">{!! $errors->first('start_date') !!}</em>
                                 @endif
@@ -80,9 +85,14 @@
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label" for="estimated_end_date">@lang('contracts.estimated_end_date')</label>
                             <div class="col-md-8">
-                                <input type="datetime" class="form-control {{ $errors->has('estimated_end_date') ? 'is-invalid' : '' }}" name="estimated_end_date" id="estimated_end_date" value="{{ old('estimated_end_date',isset($model) ? $model->estimated_end_date : null) }}" @if($errors->has('estimated_end_date')) autofocus @endif>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control {{ $errors->has('estimated_end_date') ? 'is-invalid' : '' }}" name="estimated_end_date" id="estimated_end_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" value="{{ old('estimated_end_date',isset($model) ? $model->estimated_end_date : null) }}" @if($errors->has('estimated_end_date')) autofocus @endif>
+                                </div>
                                 @if ($errors->has('estimated_end_date'))
-                                <em class="text-danger">{!! $errors->first('estimated_end_date') !!}</em>
+                                    <em class="text-danger">{!! $errors->first('estimated_end_date') !!}</em>
                                 @endif
                             </div>
                         </div>
@@ -90,9 +100,14 @@
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label" for="end_date">@lang('contracts.end_date')</label>
                             <div class="col-md-8">
-                                <input type="datetime" class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}" name="end_date" id="end_date" value="{{ old('end_date',isset($model) ? $model->end_date : null) }}" @if($errors->has('end_date')) autofocus @endif>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="datetime" class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}" name="end_date" id="end_date" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" value="{{ old('end_date',isset($model) ? $model->end_date : null) }}" @if($errors->has('end_date')) autofocus @endif>
+                                </div>
                                 @if ($errors->has('end_date'))
-                                <em class="text-danger">{!! $errors->first('end_date') !!}</em>
+                                    <em class="text-danger">{!! $errors->first('end_date') !!}</em>
                                 @endif
                             </div>
                         </div>
