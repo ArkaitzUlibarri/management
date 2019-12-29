@@ -73,16 +73,17 @@ class ContractDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('user.name'),
-            Column::make('contractType'),
-            Column::make('start_date'),
-            Column::make('estimated_end_date'),
-            Column::make('end_date'),
-            Column::make('week_hours'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('id')->title(trans('common.id')),
+            Column::make('user.name')->title(trans('common.user')),
+            Column::make('contractType')->title(trans('common.contractType')),
+            Column::make('start_date')->title(trans('contracts.start_date')),
+            Column::make('estimated_end_date')->title(trans('contracts.estimated_end_date')),
+            Column::make('end_date')->title(trans('contracts.end_date')),
+            Column::make('week_hours')->title(trans('contracts.week_hours')),
+            Column::make('created_at')->title(trans('common.created_at')),
+            Column::make('updated_at')->title(trans('common.updated_at')),
             Column::computed('action')
+                ->title(trans('common.actions'))
                 ->exportable(false)
                 ->printable(false)
                 ->width('15%')

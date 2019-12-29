@@ -65,14 +65,15 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('email'),
-            Column::make('email_verified_at'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
-            Column::make('deleted_at'),
+            Column::make('id')->title(trans('common.id')),
+            Column::make('name')->title(trans('common.name')),
+            Column::make('email')->title(trans('common.email')),
+            Column::make('email_verified_at')->title(trans('common.email_verified_at')),
+            Column::make('created_at')->title(trans('common.created_at')),
+            Column::make('updated_at')->title(trans('common.updated_at')),
+            Column::make('deleted_at')->title(trans('common.deleted_at')),
             Column::computed('action')
+                ->title(trans('common.actions'))
                 ->exportable(false)
                 ->printable(false)
                 ->width('15%')

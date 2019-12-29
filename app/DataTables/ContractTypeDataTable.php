@@ -65,17 +65,18 @@ class ContractTypeDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('code'),
-            Column::make('name'),
-            Column::make('working_day'),
-            Column::make('characteristic_1'),
-            Column::make('characteristic_2'),
-            Column::make('holidays'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
-            Column::make('deleted_at'),
+            Column::make('id')->title(trans('common.id')),
+            Column::make('code')->title(trans('contractTypes.code')),
+            Column::make('name')->title(trans('contractTypes.name')),
+            Column::make('working_day')->title(trans('contractTypes.working_day')),
+            Column::make('characteristic_1')->title(trans('contractTypes.characteristic_1')),
+            Column::make('characteristic_2')->title(trans('contractTypes.characteristic_2')),
+            Column::make('holidays')->title(trans('contractTypes.holidays')),
+            Column::make('created_at')->title(trans('common.created_at')),
+            Column::make('updated_at')->title(trans('common.updated_at')),
+            Column::make('deleted_at')->title(trans('common.deleted_at')),
             Column::computed('action')
+                ->title(trans('common.actions'))
                 ->exportable(false)
                 ->printable(false)
                 ->width('15%')
