@@ -9,16 +9,12 @@ class Contract extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
-
-    public static $rules = [
-        'user_id' => 'required|integer|exists:users,id',
-        'contract_type_id' => 'required|integer|exists:contract_types,id',
-        'start_date' => 'required|date',
-        'estimated_end_date' => 'nullable|date|after:start_date',
-        'end_date' => 'nullable|date|after:start_date',
-        'week_hours' => 'required|numeric|between:0,40',
-    ];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +34,15 @@ class Contract extends Model
     ];
 
     const ICON = 'fas fa-fw fa-file-signature';
+
+    public static $rules = [
+        'user_id' => 'required|integer|exists:users,id',
+        'contract_type_id' => 'required|integer|exists:contract_types,id',
+        'start_date' => 'required|date',
+        'estimated_end_date' => 'nullable|date|after:start_date',
+        'end_date' => 'nullable|date|after:start_date',
+        'week_hours' => 'required|numeric|between:0,40',
+    ];
 
     public function user()
     {
