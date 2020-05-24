@@ -44,11 +44,12 @@ class CreateWorkingReportsTable extends Migration
 
             //Validation
             $table->boolean('manager_validation')->default(false);
-            $table->boolean('admin_validation')->default(false);
             $table->unsignedBigInteger('validated_by_manager')->nullable();
-            $table->foreign('validated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('validated_by_manager')->references('id')->on('users')->onDelete('cascade');
+
+            $table->boolean('admin_validation')->default(false);
             $table->unsignedBigInteger('validated_by_admin')->nullable();
-            $table->foreign('validated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('validated_by_admin')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
             $table->softDeletes();

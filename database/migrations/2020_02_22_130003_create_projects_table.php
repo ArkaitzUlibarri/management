@@ -25,6 +25,7 @@ class CreateProjectsTable extends Migration
             $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
+            
             $table->unique(['name', 'client_id']);
         });
     }

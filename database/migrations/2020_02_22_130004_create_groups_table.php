@@ -21,6 +21,7 @@ class CreateGroupsTable extends Migration
             $table->boolean('enabled')->default(true);
             $table->timestamps();
             $table->softDeletes();
+            
             $table->unique(['project_id', 'name']);
         });
     }

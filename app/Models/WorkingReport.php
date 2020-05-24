@@ -49,21 +49,31 @@ class WorkingReport extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class)->withTrashed();
     }
 
     public function group()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Group::class)->withTrashed();
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)->withTrashed();
+    }
+
+    public function validatedByManager()
+    {
+        return $this->belongsTo(User::class)->withTrashed();
+    }
+
+    public function validatedByAdmin()
+    {
+        return $this->belongsTo(User::class)->withTrashed();
     }
 }
