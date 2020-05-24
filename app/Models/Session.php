@@ -6,10 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
 {
-    protected $table = 'sessions';
 
-    protected $fillable = ['user_id', 'ip_address', 'user_agent', 'last_activity'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'ip_address',
+        'user_agent',
+        'last_activity'
+    ];
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
     public $timestamps = false;
 
     public function user()

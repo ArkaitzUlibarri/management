@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\ContractType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class ContractTypeSeeder extends Seeder
 {
@@ -12,9 +14,9 @@ class ContractTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Schema::disableForeignKeyConstraints();
 
-        DB::table("contract_types")->truncate();
+        ContractType::truncate();
 
         $contract_types = [
             ['code' => '100', 'name' => 'INDEFINIDO', 'working_day' => 'TIEMPO COMPLETO', 'characteristic_1' => 'ORDINARIO', 'characteristic_2' => null, 'holidays' => 22],
@@ -62,9 +64,9 @@ class ContractTypeSeeder extends Seeder
         ];
 
         foreach ($contract_types as $type) {
-            DB::table('contract_types')->insert(array_merge($type, ['created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")]));
+            ContractType::insert($type + ['created_at' => date("Y-m-d H:i:s"), 'updated_at' => date("Y-m-d H:i:s")]);
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => config('app.name'),
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -182,6 +182,11 @@ return [
             'text' => 'Contract Types',
             'route'  => 'contractTypes.index',
             'icon' => \App\Models\ContractType::ICON,
+        ],
+        [
+            'text' => 'Contracts',
+            'route'  => 'contracts.index',
+            'icon' => \App\Models\Contract::ICON,
         ],
     ],
 

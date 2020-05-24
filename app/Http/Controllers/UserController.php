@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('UserController@index', ['user_id' => $authUser->id]);
+        Log::info('UserController@index', ['user_id' => $authUser->id]);
 
         if ($authUser->cannot('viewAny', User::class))
             abort(403);
@@ -28,7 +28,7 @@ class UserController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('UserController@show', ['user_id' => $authUser->id]);
+        Log::info('UserController@show', ['user_id' => $authUser->id]);
 
         $user = User::withTrashed()->with('sessions')->find($id);
 
@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('UserController@edit', ['user_id' => $authUser->id]);
+        Log::info('UserController@edit', ['user_id' => $authUser->id]);
 
         $user = User::find($id);
 
@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('UserController@update', ['user_id' => $authUser->id, 'request' => $request->all()]);
+        Log::info('UserController@update', ['user_id' => $authUser->id, 'request' => $request->all()]);
 
         $user = User::find($id);
 
@@ -89,7 +89,7 @@ class UserController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('UserController@create', ['user_id' => $authUser->id]);
+        Log::info('UserController@create', ['user_id' => $authUser->id]);
 
         if ($authUser->cannot('create', User::class))
             abort(403);
@@ -101,7 +101,7 @@ class UserController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('UserController@store', ['user_id' => $authUser->id, 'request' => $request->all()]);
+        Log::info('UserController@store', ['user_id' => $authUser->id, 'request' => $request->all()]);
 
         if ($authUser->cannot('create', User::class))
             abort(403);
@@ -126,7 +126,7 @@ class UserController extends Controller
     {
         $authUser = Auth::user();
 
-        Log::error('UserController@destroy', ['user_id' => $authUser->id]);
+        Log::info('UserController@destroy', ['user_id' => $authUser->id]);
 
         $user = User::find($id);
 

@@ -29,7 +29,7 @@ Breadcrumbs::for('users.edit', function ($trail, $user) {
 
 //endregion
 
-//region Users
+//region Contract Types
 
 Breadcrumbs::for('contractTypes.index', function ($trail) {
     $trail->parent('home');
@@ -49,6 +49,30 @@ Breadcrumbs::for('contractTypes.show', function ($trail, $contractType) {
 Breadcrumbs::for('contractTypes.edit', function ($trail, $contractType) {
     $trail->parent('contractTypes.show', $contractType);
     $trail->push(trans('buttons.edit'), route('contractTypes.edit', $contractType->id));
+});
+
+//endregion
+
+//region Contracts
+
+Breadcrumbs::for('contracts.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Contracts', route('contracts.index'));
+});
+
+Breadcrumbs::for("contracts.create", function ($trail) {
+    $trail->parent('contracts.index');
+    $trail->push('New Contract', route("contracts.create"));
+});
+
+Breadcrumbs::for('contracts.show', function ($trail, $contract) {
+    $trail->parent('contracts.index');
+    $trail->push($contract->user->name, route('contracts.show', $contract->id));
+});
+
+Breadcrumbs::for('contracts.edit', function ($trail, $contract) {
+    $trail->parent('contracts.show', $contract);
+    $trail->push(trans('buttons.edit'), route('contracts.edit', $contract->id));
 });
 
 //endregion

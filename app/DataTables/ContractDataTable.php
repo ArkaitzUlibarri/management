@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Contract;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UserDataTable extends DataTable
+class ContractDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,18 +21,26 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'users.action');
+            ->editColumn('contractType', function (Contract $model) {
+                return isset($model->contractType)
+                    ? $model->contractType->code . ' - ' . $model->contractType->name
+                    : null;
+            })
+            ->addColumn('action', 'contracts.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param User $model
+     * @param \App\Models\Contract $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Contract $model)
     {
-        return $model->newQuery()->withTrashed();
+        return $model->newQuery()
+            ->select('contracts.*')
+            ->with('user')
+            ->with('contractType');
     }
 
     /**
@@ -46,7 +54,7 @@ class UserDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
-            ->orderBy(1,'asc')
+            ->orderBy(1, 'asc')
             ->scrollX(true)
             ->buttons(
                 Button::make('create'),
@@ -66,12 +74,14 @@ class UserDataTable extends DataTable
     {
         return [
             Column::make('id')->title(trans('common.id')),
-            Column::make('name')->title(trans('common.name')),
-            Column::make('email')->title(trans('common.email')),
-            Column::make('email_verified_at')->title(trans('common.email_verified_at')),
+            Column::make('user.name')->title(trans('common.user')),
+            Column::make('contractType')->title(trans('common.contractType')),
+            Column::make('start_date')->title(trans('contracts.start_date')),
+            Column::make('estimated_end_date')->title(trans('contracts.estimated_end_date')),
+            Column::make('end_date')->title(trans('contracts.end_date')),
+            Column::make('week_hours')->title(trans('contracts.week_hours')),
             Column::make('created_at')->title(trans('common.created_at')),
             Column::make('updated_at')->title(trans('common.updated_at')),
-            Column::make('deleted_at')->title(trans('common.deleted_at')),
             Column::computed('action')
                 ->title(trans('common.actions'))
                 ->exportable(false)
@@ -88,6 +98,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'users_' . date('YmdHis');
+        return 'contracts_' . date('YmdHis');
     }
 }
